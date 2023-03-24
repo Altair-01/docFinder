@@ -32,7 +32,16 @@ for filename in os.listdir(pdf_dir):
                 page = reader.pages[i]
                 #print(page.extract_text())
                 text = page.extract_text()
+
+                all_words_found = True  # Initialiser à True
                 # If the page has text, count the number of words
+                # Search for the search words in the text
+                for word in search_words:
+                    if word.lower() not in text.lower():
+                        all_words_found = False
+                        break
+                if all_words_found and filename not in matching_files:
+                    matching_files.append(filename)
                 if text:
                     # Split the text into words and count the number of words
                     words = re.findall(r"\b\w+(?:[-'\(]\w+[\)'])*\b", text)
@@ -40,13 +49,6 @@ for filename in os.listdir(pdf_dir):
                     nbr_mots += word_count
                     # Split the text into words and update the Counter object
                     word_counts.update(text.split())
-
-                    # Search for the search words in the text
-                    for word in search_words:
-                        if (word.lower() in text.lower()):
-                            if filename not in matching_files:
-                                matching_files.append(filename)
-                            break
 
 # Print the total word count
 print(f"Nombre total de mots: {sum(word_counts.values())}")
