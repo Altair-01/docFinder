@@ -4,7 +4,7 @@ from PyPDF2 import PdfReader
 from collections import Counter
 import shutil
 # Chemin vers le dossier contenant les fichiers PDF
-pdf_dir = "/Users/user/Desktop/"
+pdf_dir = "/Users/user/Desktop/pdf/"
 dest_dir = "/Users/user/Desktop/pdf/matching_files/"
 #Renseigner les mots recherchés
 search_words = input("Entrez les mots de recherche, séparés par des virgules : ")
